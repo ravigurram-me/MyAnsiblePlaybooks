@@ -1,0 +1,20 @@
+--- # Software update
+- name: Software Update
+  hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+
+  vars:
+    pkgname: httpd
+
+  tasks:
+    - name: To stop {{pkgname}} service
+      service: 
+        name: "{{pkgname}}"
+        state: stopped
+
+    - name: Uninstall {{pkgname}} s/w 
+      yum:
+        name: "{{pkgname}}"
+        state: absent

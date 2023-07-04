@@ -1,0 +1,19 @@
+---
+- name: Create users with variable file
+  hosts: webservers[0]
+  user: ansible
+  connection: ssh
+  become: yes
+
+  vars_files: 
+    - userdata.yml
+
+  tasks:
+    - name: creating {{user1}} user
+      user: 
+        name: "{{user1}}"
+
+    - name: creating {{user2}} user
+      user:
+        name: "{{user2}}"
+

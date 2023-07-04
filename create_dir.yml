@@ -1,0 +1,12 @@
+--- # creation of a directory
+- name: My playbook
+  hosts: all 
+  user: ansible
+  become: true
+  connection: ssh
+
+  tasks:
+   - name: New directory creation
+     file:
+       path: /home/ansible/ravidir
+       state: directory

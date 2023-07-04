@@ -1,0 +1,18 @@
+--- # To Uninstall Jenkins
+- name: Unistall Jenkins
+  hosts: webservers[0]
+  user: ansible
+  connection: ssh
+  become: true
+
+  tasks:
+    - name: Stop Jenkins service
+      service:
+        name: jenkins
+        state: stopped
+
+    - name: Uninstall Jenkins
+      yum:
+        name: jenkins
+        state: absent
+

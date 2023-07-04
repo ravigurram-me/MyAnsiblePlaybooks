@@ -1,0 +1,15 @@
+--- # To Install Java software
+- name: Install Java
+  hosts: webservers[0]
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+  - name: Install Java on RedHat
+    yum: 
+      name: java
+      state: latest
+    when: ansible_os_family == "RedHat"
+
+

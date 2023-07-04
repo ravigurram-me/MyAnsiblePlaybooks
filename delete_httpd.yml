@@ -1,0 +1,17 @@
+--- # Install service
+- name: Install software
+  hosts: webservers[0]
+  user: ansible
+  become: true
+  connection: ssh
+
+  vars:
+    pkgname: httpd
+
+  tasks:
+    - name: Stop httpd service
+      action: service name='{{pkgname}}' state=stopped
+
+    - name: Uninstall httpd s/w 
+      action: yum name='{{pkgname}}' state=latest
+

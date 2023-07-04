@@ -1,0 +1,14 @@
+--- # New User copy  process
+- name: My playbook
+  hosts: webservers[0] 
+  user: ansible
+  become: yes
+  connection: ssh
+
+  vars:
+   - name: Variable declaration 
+     username: Jolly
+
+  tasks:
+    - name: Create user
+      action: user name='{{username}}'

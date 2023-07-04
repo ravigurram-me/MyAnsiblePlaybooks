@@ -1,0 +1,16 @@
+--- # My Conditional Playbook
+- hosts: webservers[0]
+  user: ansible
+  become: yes 
+  connection: ssh
+
+  tasks:
+    - name: Install apache for Debian
+      command: apt-get install apache2 -y
+      when: ansible_os_family == "Debian"
+
+    - name: Install apache for RedHat
+      command: yum  install httpd -y
+      when: ansible_os_family == "RedHat"
+
+     

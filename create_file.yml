@@ -1,0 +1,10 @@
+--- # Users creation process
+- name: My playbook
+  hosts: all 
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+   - name: New user creation
+     action: user name=kumar state=present

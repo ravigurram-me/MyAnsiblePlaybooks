@@ -1,0 +1,14 @@
+--- # Install S/W packages with Loop
+- name: Loop Concepts
+  hosts: webservers[0]
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+  - name: Install packages
+    yum: name='{{item}}' state=latest 
+      
+    with_items: ['httpd','git','tree','java']
+    
+

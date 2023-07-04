@@ -1,0 +1,9 @@
+--- # Testing ROLES
+- hosts: webservers[0]
+  user: ansible
+  connection: ssh
+  become: yes
+
+  roles: 
+    - testrole
+

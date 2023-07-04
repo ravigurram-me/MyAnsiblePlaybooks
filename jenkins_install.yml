@@ -1,0 +1,36 @@
+--- # To Install Jenkins
+- name: Install Jenkins
+  hosts: webservers[0]
+  user: ansible
+  connection: ssh
+  become: true
+
+  tasks:
+    - name: Install wget 
+      yum:
+        name: wget
+        state: installed
+
+    - name: Download Jenkins
+      get_url:
+        url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+        dest: /etc/yum.repos.d/jenkins.repo
+
+    - name: Import  Jenkins key
+      rpm_key:
+        key: https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+        
+    - name: Install Jenkins
+      yum:
+        name: jenkins
+        state: installed
+
+    - name: Start Jenkins service
+      service:
+        name: jenkins
+        state: started
+        enabled: yes
+
+
+
+
